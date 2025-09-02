@@ -3,6 +3,11 @@ import 'package:get/get.dart';
 import 'package:flutter_application_1/controllers/todo_contoller.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/pages/dashboard_page.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/pages/add_todo_pages.dart';
+import 'package:flutter_application_1/pages/edit_todo_page.dart';
+import 'package:flutter_application_1/routes/app_routes.dart';
+import 'package:flutter_application_1/models/todo.dart';
 
 void main() {
   Get.put(TodoController());
@@ -20,10 +25,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(  // <-- Ganti dari MaterialApp ke GetMaterialApp
+    return GetMaterialApp(
       title: 'Flutter Login Demo',
       debugShowCheckedModeBanner: false,
-
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: darkBackground,
         primaryColor: primaryColor,
@@ -69,17 +73,23 @@ class MyApp extends StatelessWidget {
         iconTheme: const IconThemeData(color: lightText),
       ),
 
-      initialRoute: '/',
-      getPages: [  // Optional tapi direkomendasikan kalau pakai GetX
-        GetPage(name: '/', page: () => const LoginPage()),
-        GetPage(name: '/dashboard', page: () => const DashboardPage()),
+      initialRoute: AppRoutes.LOGIN,
+      getPages: [
+        GetPage(name: AppRoutes.LOGIN, page: () => const LoginPage()),
+        GetPage(name: AppRoutes.DASHBOARD, page: () => const DashboardPage()),
+        GetPage(name: AppRoutes.HOME, page: () => HomePage()),
+        GetPage(name: AppRoutes.ADD_TODO, page: () => const AddTodoPage()),
+        GetPage(
+          name: AppRoutes.EDIT_TODO,
+          page: () {
+            final args = Get.arguments as Map<String, dynamic>;
+            return EditTodoPage(
+              index: args['index'],
+              todo: args['todo'] as Todo,
+            );
+          },
+        ),
       ],
-
-      // Kalau tidak mau pakai getPages, bisa juga pakai routes seperti ini:
-      // routes: {
-      //   '/': (context) => const LoginPage(),
-      //   '/dashboard': (context) => const DashboardPage(),
-      // },
     );
   }
 }

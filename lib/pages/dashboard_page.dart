@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:get/get.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
 import 'history_page.dart';
 import 'profile_page.dart';
+import '../routes/app_routes.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -14,7 +16,7 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomePage(),
+    HomePage(),           // HomePage tetap memanggil Add/Edit Todo
     const HistoryPage(),
     const ProfilePage(),
   ];
@@ -32,18 +34,23 @@ class _DashboardPageState extends State<DashboardPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: const [
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.grey,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: 'Home',
+            tooltip: AppRoutes.HOME, // Optional
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
+            icon: const Icon(Icons.history),
             label: 'History',
+            tooltip: AppRoutes.HOME,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             label: 'Profile',
+            tooltip: AppRoutes.HOME,
           ),
         ],
       ),

@@ -8,11 +8,15 @@ class TodoController extends GetxController {
     todos.add(todo);
   }
 
-  void updateStatus(int index, String newStatus) {
-    todos[index].status.value = newStatus;
+  void updateTodo(int index, Todo updatedTodo) {
+    if (index >= 0 && index < todos.length) {
+      todos[index] = updatedTodo;
+    }
   }
 
-  void removeTodo(int index) {
-    todos.removeAt(index);
+  void deleteTodo(int index) {
+    if (index >= 0 && index < todos.length) {
+      todos.removeAt(index);
+    }
   }
 }

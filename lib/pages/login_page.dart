@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
-    if (username == 'kazkiz' && password == 'kuz') {
+    if (username == 'admin' && password == '123') {
       Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
