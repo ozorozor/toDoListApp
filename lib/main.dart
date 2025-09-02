@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-import 'pages/dashboard_page.dart';
+import 'package:get/get.dart';
+import 'package:flutter_application_1/controllers/todo_contoller.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
+import 'package:flutter_application_1/pages/dashboard_page.dart';
 
 void main() {
+  Get.put(TodoController());
   runApp(const MyApp());
 }
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(  // <-- Ganti dari MaterialApp ke GetMaterialApp
       title: 'Flutter Login Demo',
       debugShowCheckedModeBanner: false,
 
@@ -67,10 +70,16 @@ class MyApp extends StatelessWidget {
       ),
 
       initialRoute: '/',
-      routes: {
-        '/': (context) => const LoginPage(),
-        '/dashboard': (context) => const DashboardPage(),
-      },
+      getPages: [  // Optional tapi direkomendasikan kalau pakai GetX
+        GetPage(name: '/', page: () => const LoginPage()),
+        GetPage(name: '/dashboard', page: () => const DashboardPage()),
+      ],
+
+      // Kalau tidak mau pakai getPages, bisa juga pakai routes seperti ini:
+      // routes: {
+      //   '/': (context) => const LoginPage(),
+      //   '/dashboard': (context) => const DashboardPage(),
+      // },
     );
   }
 }
