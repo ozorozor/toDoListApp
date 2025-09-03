@@ -13,10 +13,4 @@ class TodoController extends GetxController {
       todos[index] = updatedTodo;
     }
   }
-
-  void deleteTodo(int index) {
-    if (index >= 0 && index < todos.length) {
-      todos.removeAt(index);
-    }
-  }
 }

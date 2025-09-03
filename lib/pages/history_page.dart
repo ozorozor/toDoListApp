@@ -26,27 +26,37 @@ class HistoryPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('History')),
       body: Obx(() {
-        // Hanya ambil todos yang Complete
-        final completedTodos = todoController.todos
-            .where((todo) => todo.status.value == 'Complete')
+        final filteredTodos = todoController.todos
+            .where((todo) => todo.status.value != 'Progress')
             .toList();
 
-        if (completedTodos.isEmpty) {
-          return const Center(child: Text('No completed todos yet.'));
+        filteredTodos.sort((a, b) {
+          int getPriority(String status) {
+            if (status == 'Complete') return 0;
+            if (status == 'Cancel') return 1;
+            return 2;
+          }
+
+          return getPriority(a.status.value)
+              .compareTo(getPriority(b.status.value));
+        });
+
+        if (filteredTodos.isEmpty) {
+          return const Center(child: Text('History Kosong'));
         }
 
         return ListView.builder(
-          itemCount: completedTodos.length,
+          itemCount: filteredTodos.length,
           padding: const EdgeInsets.all(12),
           itemBuilder: (context, index) {
-            final todo = completedTodos[index];
+            final todo = filteredTodos[index];
             final originalIndex = todoController.todos.indexOf(todo);
 
             return Container(
               margin: const EdgeInsets.symmetric(vertical: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey[800], // container abu-abu gelap
+                color: Colors.grey[800],
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListTile(
@@ -66,7 +76,6 @@ class HistoryPage extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  // menuju ke EditTodoPage
                   Get.toNamed(
                     AppRoutes.EDIT_TODO,
                     arguments: {

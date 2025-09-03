@@ -14,7 +14,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _descController = TextEditingController();
-  String _selectedStatus = 'Progress'; // default
+  String _selectedStatus = 'Progress';
 
   final List<String> statuses = ['Progress', 'Complete', 'Cancel'];
   final TodoController todoController = Get.find();

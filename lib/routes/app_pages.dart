@@ -9,13 +9,12 @@ class AppPages {
   static final routes = [
     GetPage(
       name: AppRoutes.HOME,
-      page: () => (),
+      page: () => HomePage(),
     ),
     GetPage(
       name: AppRoutes.ADD_TODO,
       page: () => const AddTodoPage(),
     ),
-    // EditTodoPage butuh parameter, jadi kita gunakan `arguments`
     GetPage(
       name: AppRoutes.EDIT_TODO,
       page: () {

@@ -17,7 +17,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // Warna palette
   static const Color darkBackground = Color(0xFF141111);
   static const Color inputBackground = Color(0xFF342E2E);
   static const Color primaryColor = Color(0xFF780817);

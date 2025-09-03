@@ -18,14 +18,28 @@ class HomePage extends StatelessWidget {
       ),
       body: Obx(() {
         if (todoController.todos.isEmpty) {
-          return const Center(child: Text('No todos yet.'));
+          return const Center(child: Text('Homepage Kosong'));
         }
 
+        // SORTING di luar ListView, langsung saat data diambil
+        final sortedTodos = [...todoController.todos];
+        sortedTodos.sort((a, b) {
+          int getPriority(String status) {
+            if (status == 'Progress') return 0;
+            if (status == 'Complete') return 1;
+            if (status == 'Cancel') return 2;
+            return 3;
+          }
+
+          return getPriority(a.status.value).compareTo(getPriority(b.status.value));
+        });
+
         return ListView.builder(
-          itemCount: todoController.todos.length,
+          itemCount: sortedTodos.length,
           padding: const EdgeInsets.all(12),
           itemBuilder: (context, index) {
-            final todo = todoController.todos[index];
+            final todo = sortedTodos[index]; 
+
             return Container(
               margin: const EdgeInsets.symmetric(vertical: 6),
               padding: const EdgeInsets.all(12),
@@ -50,8 +64,9 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
+                  final originalIndex = todoController.todos.indexOf(todo);
                   Get.toNamed(AppRoutes.EDIT_TODO, arguments: {
-                    'index': index,
+                    'index': originalIndex,
                     'todo': todo,
                   });
                 },

@@ -16,7 +16,7 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomePage(),           // HomePage tetap memanggil Add/Edit Todo
+    HomePage(),  
     const HistoryPage(),
     const ProfilePage(),
   ];
@@ -40,7 +40,7 @@ class _DashboardPageState extends State<DashboardPage> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.home),
             label: 'Home',
-            tooltip: AppRoutes.HOME, // Optional
+            tooltip: AppRoutes.HOME, 
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.history),
