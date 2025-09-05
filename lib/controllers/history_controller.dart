@@ -3,14 +3,27 @@ import 'package:get/get.dart';
 import 'package:flutter_application_1/controllers/todo_contoller.dart';
 import 'package:flutter_application_1/models/todo.dart';
 
-class HomeController extends GetxController {
+class HistoryController extends GetxController {
   final TodoController todoController = Get.find();
 
-  // hanya tampilkan yang masih Progress
-  List<Todo> get progressTodos {
-    return todoController.todos
-        .where((todo) => todo.status.value == 'Progress')
+  // hanya tampilkan Complete & Cancel
+  List<Todo> get historyTodos {
+    final todos = todoController.todos
+        .where((todo) => todo.status.value != 'Progress')
         .toList();
+
+    todos.sort((a, b) {
+      int getPriority(String status) {
+        if (status == 'Complete') return 0;
+        if (status == 'Cancel') return 1;
+        return 2;
+      }
+
+      return getPriority(a.status.value)
+          .compareTo(getPriority(b.status.value));
+    });
+
+    return todos;
   }
 
   Color getStatusColor(String status) {
