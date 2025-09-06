@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         ),
         iconTheme: const IconThemeData(color: lightText),
       ),
-      home: DashboardPage(),
+      initialRoute: AppRoutes.LOGIN,
       getPages: AppPages.routes,
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import '../routes/app_routes.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
     final password = _passwordController.text.trim();
 
     if (username == 'admin' && password == '123') {
-      Navigator.of(context).pushReplacementNamed(AppRoutes.DASHBOARD);
+      Get.offAllNamed(AppRoutes.DASHBOARD);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Username atau password salah')),
