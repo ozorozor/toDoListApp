@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../routes/app_routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,7 +11,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
   bool _obscurePassword = true;
 
   void _login() {
@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
     final password = _passwordController.text.trim();
 
     if (username == 'admin' && password == '123') {
-      Navigator.pushReplacementNamed(context, '/dashboard');
+      Navigator.of(context).pushReplacementNamed(AppRoutes.DASHBOARD);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Username atau password salah')),
@@ -48,8 +48,8 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: _usernameController,
                 style: TextStyle(color: theme.colorScheme.onSurface),
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.person),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person),
                   hintText: 'Username',
                 ),
               ),
