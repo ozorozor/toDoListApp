@@ -4,18 +4,18 @@ import 'package:flutter_application_1/controllers/history_controller.dart';
 import 'package:flutter_application_1/controllers/todo_contoller.dart';
 import '../routes/app_routes.dart';
 
-class HistoryPage extends StatelessWidget {
-  HistoryPage({super.key});
-
-  final HistoryController historyController = Get.put(HistoryController());
-  final TodoController todoController = Get.find();
+class HistoryPage extends GetView<HistoryController> {
+  const HistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // final TodoController todoController = Get.find();
+final TodoController todoController = Get.find<TodoController>();
+
     return Scaffold(
       appBar: AppBar(title: const Text('History')),
       body: Obx(() {
-        final todos = historyController.historyTodos;
+        final todos = todoController.historyTodos;
 
         if (todos.isEmpty) {
           return const Center(child: Text('History Kosong'));
@@ -47,7 +47,7 @@ class HistoryPage extends StatelessWidget {
                 trailing: Text(
                   todo.status.value,
                   style: TextStyle(
-                    color: historyController.getStatusColor(todo.status.value),
+                    color: todoController.getStatusColor(todo.status.value),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
