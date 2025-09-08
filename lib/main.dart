@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/dashboard_page.dart';
-import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/controllers/todo_contoller.dart';
 import 'package:flutter_application_1/routes/app_routes.dart';
