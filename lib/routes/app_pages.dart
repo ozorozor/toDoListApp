@@ -1,4 +1,6 @@
 import 'package:flutter_application_1/bindings/add_todo_binding.dart';
+import 'package:flutter_application_1/bindings/edit_todo_binding.dart';
+import 'package:flutter_application_1/bindings/login_binding.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/pages/dashboard_page.dart';
@@ -16,6 +18,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.LOGIN,
       page: () => const LoginPage(),
+      binding : LoginBinding(),
     ),
     GetPage(
       name: AppRoutes.DASHBOARD,
@@ -49,7 +52,7 @@ class AppPages {
           todo: args['todo'] as Todo,
         );
       },
-      binding: TodoBinding(),
+      binding: EditTodoBinding(),
     ),
   ];
 }

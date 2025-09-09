@@ -1,35 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import '../routes/app_routes.dart';
+import 'package:get/get.dart';
+import '../controllers/login_controller.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  bool _obscurePassword = true;
-
-  void _login() {
-    final username = _usernameController.text.trim();
-    final password = _passwordController.text.trim();
-
-    if (username == 'admin' && password == '123') {
-      Get.offAllNamed(AppRoutes.DASHBOARD);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Username atau password salah')),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+  final LoginController controller = Get.find<LoginController>();
 
     return Scaffold(
       body: Center(
@@ -46,8 +25,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 40),
+
               TextField(
-                controller: _usernameController,
+                controller: controller.usernameController,
                 style: TextStyle(color: theme.colorScheme.onSurface),
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person),
@@ -55,33 +35,34 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 24),
-              TextField(
-                controller: _passwordController,
-                obscureText: _obscurePassword,
-                style: TextStyle(color: theme.colorScheme.onSurface),
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscurePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
+
+              Obx(() => TextField(
+                    controller: controller.passwordController,
+                    obscureText: controller.obscurePassword.value,
+                    style: TextStyle(color: theme.colorScheme.onSurface),
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          controller.obscurePassword.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          controller.obscurePassword.value =
+                              !controller.obscurePassword.value;
+                        },
+                      ),
+                      hintText: 'Password',
                     ),
-                    onPressed: () {
-                      setState(() {
-                        _obscurePassword = !_obscurePassword;
-                      });
-                    },
-                  ),
-                  hintText: 'Password',
-                ),
-              ),
+                  )),
               const SizedBox(height: 40),
+
               SizedBox(
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: _login,
+                  onPressed: () => controller.login(context),
                   child: const Text('LOGIN'),
                 ),
               ),

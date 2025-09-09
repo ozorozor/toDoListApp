@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/controllers/edit_todo_controller';
+import 'package:flutter_application_1/controllers/edit_todo_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/reusable/reusable_widgets.dart';
 
@@ -14,8 +14,7 @@ class EditTodoPage extends StatefulWidget {
 }
 
 class _EditTodoPageState extends State<EditTodoPage> {
-  final EditTodoController controller = Get.put(EditTodoController());
-
+  final EditTodoController controller = Get.find<EditTodoController>();
   @override
   void initState() {
     super.initState();
