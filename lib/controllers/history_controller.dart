@@ -6,7 +6,6 @@ import 'package:flutter_application_1/models/todo.dart';
 class HistoryController extends GetxController {
   final TodoController todoController = Get.find();
 
-  // hanya tampilkan Complete & Cancel
   List<Todo> get historyTodos {
     final todos = todoController.todos
         .where((todo) => todo.status.value != 'Progress')

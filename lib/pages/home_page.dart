@@ -8,7 +8,6 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomeController homeController = Get.put(HomeController());
-  // final TodoController todoController = Get.find();
 final TodoController todoController = Get.find<TodoController>();
 
 

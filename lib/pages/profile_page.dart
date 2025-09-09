@@ -5,7 +5,7 @@ class ProfilePage extends StatelessWidget {
 
   final List<Map<String, String>> profiles = const [
     {
-      'name': 'Ozora Radenka',
+      'name': 'Ozora Radinka Danadyaksa',
       'kelas': '11 PPLG 1',
       'absen': 'Absen 28',
     },
