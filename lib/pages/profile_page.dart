@@ -6,13 +6,13 @@ class ProfilePage extends StatelessWidget {
   final List<Map<String, String>> profiles = const [
     {
       'name': 'Ozora Radenka',
-      'role': 'Leader',
-      'email': 'Absen 29',
+      'kelas': '11 PPLG 1',
+      'absen': 'Absen 28',
     },
     {
       'name': 'Aldestha Nendrayanto',
-      'role': 'Member',
-      'email': 'Absen 01',
+      'kelas': '11 PPLG 1',
+      'absen': 'Absen 01',
     },
   ];
 
@@ -50,7 +50,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        profile['role']!,
+                        profile['kelas']!,
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.white70,
@@ -58,7 +58,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        profile['email']!,
+                        profile['absen']!,
                         style: const TextStyle(
                           fontSize: 13,
                           color: Colors.white60,

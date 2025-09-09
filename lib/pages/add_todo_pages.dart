@@ -11,7 +11,9 @@ class AddTodoPage extends StatefulWidget {
 }
 
 class _AddTodoPageState extends State<AddTodoPage> {
-  final AddTodoController controller = Get.put(AddTodoController());
+  // final AddTodoController controller = Get.put(AddTodoController());
+
+  final AddTodoController controller = Get.find<AddTodoController>();
 
   @override
   Widget build(BuildContext context) {
