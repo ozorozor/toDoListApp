@@ -4,24 +4,18 @@ import 'package:flutter_application_1/models/todo.dart';
 import 'package:flutter_application_1/controllers/todo_contoller.dart';
 
 class EditTodoController extends GetxController {
-  // Form key
   final formKey = GlobalKey<FormState>();
 
-  // Controller input
   late TextEditingController titleController;
   late TextEditingController descController;
 
-  // Status dropdown
   var selectedStatus = 'Progress'.obs;
   final List<String> statuses = ['Progress', 'Complete', 'Cancel'];
 
-  // Reference ke TodoController utama
   final TodoController todoController = Get.find();
 
-  // Index todo yang diedit
   late int index;
 
-  // Inisialisasi dengan data todo
   void initData({required int index, required Todo todo}) {
     this.index = index;
     titleController = TextEditingController(text: todo.title);
@@ -29,7 +23,6 @@ class EditTodoController extends GetxController {
     selectedStatus.value = todo.status.value;
   }
 
-  // Fungsi submit / update
   void submit() {
     if (formKey.currentState!.validate()) {
       final updatedTodo = Todo(
@@ -44,7 +37,6 @@ class EditTodoController extends GetxController {
 
   @override
   void onClose() {
-    // Dispose controller
     titleController.dispose();
     descController.dispose();
     super.onClose();

@@ -6,7 +6,6 @@ import 'package:flutter_application_1/models/todo.dart';
 class HomeController extends GetxController {
   final TodoController todoController = Get.find();
 
-  // hanya tampilkan yang masih Progress
   List<Todo> get progressTodos {
     return todoController.todos
         .where((todo) => todo.status.value == 'Progress')

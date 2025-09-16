@@ -9,7 +9,6 @@ class HistoryPage extends GetView<HistoryController> {
 
   @override
   Widget build(BuildContext context) {
-    // final TodoController todoController = Get.find();
 final TodoController todoController = Get.find<TodoController>();
 
     return Scaffold(

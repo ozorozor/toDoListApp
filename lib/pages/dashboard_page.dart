@@ -15,10 +15,10 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-  HomePage(),
-  HistoryPage(),
-  const ProfilePage(),
-];
+    HomePage(),
+    HistoryPage(),
+    ProfilePage(),
+  ];
 
 
   void _onItemTapped(int index) {
