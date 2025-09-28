@@ -5,7 +5,6 @@ import 'package:flutter_application_1/controllers/profile_controller.dart';
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
 
-<<<<<<< HEAD
   final ProfileController controller = Get.put(ProfileController());
 
   void _showLogoutMessageBox(BuildContext context) {
@@ -32,20 +31,6 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
-=======
-  final List<Map<String, String>> profiles = const [
-    {
-      'name': 'Ozora Radinka Danadyaksa',
-      'kelas': '11 PPLG 1',
-      'absen': 'Absen 28',
-    },
-    {
-      'name': 'Aldestha Nendrayanto',
-      'kelas': '11 PPLG 1',
-      'absen': 'Absen 01',
-    },
-  ];
->>>>>>> d766e254b2a4d10722ceca5242a64f9f1434e80d
 
   @override
   Widget build(BuildContext context) {
