@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         ),
         iconTheme: const IconThemeData(color: lightText),
       ),
-      initialRoute: AppRoutes.LOGIN,
+      initialRoute: AppRoutes.splashscreen,
       getPages: AppPages.routes,
     );
   }

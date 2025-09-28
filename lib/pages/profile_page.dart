@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../routes/app_routes.dart';
+import 'package:flutter_application_1/controllers/profile_controller.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  ProfilePage({Key? key}) : super(key: key);
 
-  final Map<String, String> profile = const {
-    'name': 'Ozora Aldestha',
-    'kelas': '11 PPLG 1',
-    'absen': '28 / 01',
-    'photoUrl': 'https://example.com/photo.jpg', 
-  };
+  final ProfileController controller = Get.put(ProfileController());
 
   void _showLogoutMessageBox(BuildContext context) {
     showDialog(
@@ -28,7 +23,7 @@ class ProfilePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop();
-              Get.offAllNamed(AppRoutes.LOGIN);
+              controller.logout(); // ✅ pakai controller
             },
             child: const Text('Ya'),
           ),
@@ -39,6 +34,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profile = controller.profile;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),

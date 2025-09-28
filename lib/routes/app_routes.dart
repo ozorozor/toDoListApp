@@ -6,4 +6,5 @@ class AppRoutes {
   static const EDIT_TODO = '/edit_todo';
   static const HISTORY = '/history';
   static const PROFILE = '/profile';
+  static const splashscreen = '/splashscreen';
 }

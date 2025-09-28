@@ -1,73 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controllers/login_controller.dart';
+import 'package:flutter_application_1/reusable/custom.dart';
 import 'package:get/get.dart';
-import '../controllers/login_controller.dart';
 
-class LoginPage extends GetView<LoginController> {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
+
+  final loginController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-  final LoginController controller = Get.find<LoginController>();
-
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'LOGIN',
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
-                ),
-              ),
-              const SizedBox(height: 40),
-
-              TextField(
-                controller: controller.usernameController,
-                style: TextStyle(color: theme.colorScheme.onSurface),
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.person),
-                  hintText: 'Username',
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              Obx(() => TextField(
-                    controller: controller.passwordController,
-                    obscureText: controller.obscurePassword.value,
-                    style: TextStyle(color: theme.colorScheme.onSurface),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          controller.obscurePassword.value
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                        onPressed: () {
-                          controller.obscurePassword.value =
-                              !controller.obscurePassword.value;
-                        },
-                      ),
-                      hintText: 'Password',
-                    ),
-                  )),
-              const SizedBox(height: 40),
-
-              SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: ElevatedButton(
-                  onPressed: () => controller.login(context),
-                  child: const Text('LOGIN'),
-                ),
-              ),
-            ],
-          ),
+      appBar: AppBar(title: const Text("Login Page")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            CustomTextField(
+              textEditingController: loginController.usernameController,
+              hintText: "Username",
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              textEditingController: loginController.passwordController,
+              hintText: "Password",
+              obscureText: true,
+            ),
+            const SizedBox(height: 24),
+            CustomButton(
+              text: "LOGIN",
+              textColor: Colors.white,
+              onPressed: () {
+                loginController.login();
+              },
+            ),
+          ],
         ),
       ),
     );

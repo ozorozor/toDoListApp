@@ -1,6 +1,8 @@
 import 'package:flutter_application_1/bindings/add_todo_binding.dart';
 import 'package:flutter_application_1/bindings/edit_todo_binding.dart';
 import 'package:flutter_application_1/bindings/login_binding.dart';
+import 'package:flutter_application_1/bindings/splashscreen_binding.dart';
+import 'package:flutter_application_1/pages/splashscreen_page.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/pages/dashboard_page.dart';
@@ -17,7 +19,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: AppRoutes.LOGIN,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
       binding : LoginBinding(),
     ),
     GetPage(
@@ -41,6 +43,11 @@ class AppPages {
       name: AppRoutes.HISTORY,
       page: () => const HistoryPage(),
       binding: TodoBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.splashscreen,
+      page: () => SplashscreenPage(),
+      binding: SplashscreenBinding()
     ),
 
     GetPage(
