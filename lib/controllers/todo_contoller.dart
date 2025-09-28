@@ -33,12 +33,12 @@ class TodoController extends GetxController {
   Color getStatusColor(String status) {
     switch (status) {
       case 'Complete':
-        return const Color.fromARGB(255, 0, 200, 0); // hijau
+        return const Color.fromARGB(255, 0, 200, 0);
       case 'Cancel':
-        return const Color.fromARGB(255, 200, 0, 0); // merah
+        return const Color.fromARGB(255, 200, 0, 0);
       case 'Progress':
       default:
-        return const Color.fromARGB(255, 255, 165, 0); // oranye
+        return const Color.fromARGB(255, 255, 165, 0);
     }
   }
 }
