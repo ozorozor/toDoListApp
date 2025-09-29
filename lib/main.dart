@@ -12,26 +12,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  static const Color darkBackground = Color(0xFF141111);
-  static const Color inputBackground = Color(0xFF342E2E);
-  static const Color primaryColor = Color(0xFF780817);
-  static const Color lightText = Color(0xFFFEDDED);
+  // Warna dasar hitam-putih elegan
+  static const Color darkBackground = Colors.black; // background utama
+  static const Color inputBackground = Color(0xFF1E1E1E); // abu gelap untuk input
+  static const Color primaryColor = Colors.white; // putih sebagai warna utama
+  static const Color lightText = Colors.white; // teks putih
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Login Demo',
+      title: 'ToDo List App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: darkBackground,
         primaryColor: primaryColor,
-        colorScheme: ColorScheme.dark(
-          primary: primaryColor,
-          background: darkBackground,
-          surface: inputBackground,
-          onPrimary: lightText,
-          onBackground: lightText,
-          onSurface: lightText,
+        colorScheme: const ColorScheme.dark(
+          primary: Colors.white,
+          secondary: Colors.grey,
+          surface: Color(0xFF1E1E1E),
+          onPrimary: Colors.black, // teks di atas tombol putih
+          onSecondary: Colors.white,
+          onSurface: Colors.white,
         ),
         textTheme: ThemeData.dark().textTheme.apply(
               bodyColor: lightText,
@@ -40,31 +41,46 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: inputBackground,
-          hintStyle: TextStyle(color: lightText.withOpacity(0.7)),
+          hintStyle: TextStyle(color: lightText.withOpacity(0.6)),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
           ),
           prefixIconColor: lightText,
           suffixIconColor: lightText,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 255, 219, 223),
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(12),
             ),
             elevation: 0,
             textStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
-              letterSpacing: 1.2,
+              letterSpacing: 1.1,
             ),
           ),
         ),
-        iconTheme: const IconThemeData(color: lightText),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          elevation: 0,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+        ),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       initialRoute: AppRoutes.splashscreen,
       getPages: AppPages.routes,

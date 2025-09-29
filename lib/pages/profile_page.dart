@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:flutter_application_1/controllers/profile_controller.dart';
 
 class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key}) : super(key: key);
+  ProfilePage({super.key});
 
   final ProfileController controller = Get.put(ProfileController());
 

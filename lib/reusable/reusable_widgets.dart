@@ -11,7 +11,7 @@ class ReusableButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.color = const Color(0xFFFEDDED),
+    this.color = Colors.white, // default putih
     this.height = 48,
     this.width = double.infinity,
   });
@@ -31,7 +31,11 @@ class ReusableButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF780817)),
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.black, // teks jadi hitam
+          ),
         ),
       ),
     );

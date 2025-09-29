@@ -9,7 +9,7 @@ class SplashscreenController extends GetxController {
     checkLogin();
   }
 
-  checkLogin() async {
+  Future<void> checkLogin() async {
     await Future.delayed(Duration(seconds: 5));
     final prefs = await SharedPreferences.getInstance();
     final savedUsername = prefs.getString("username");

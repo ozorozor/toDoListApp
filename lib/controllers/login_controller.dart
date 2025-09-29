@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginController extends GetxController {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  login() async {
+  Future<void> login() async {
     if (usernameController.text.toString() == "admin" &&
         passwordController.text.toString() == "admin") {
       final prefs = await SharedPreferences.getInstance();
