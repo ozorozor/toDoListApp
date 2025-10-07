@@ -2,19 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_application_1/controllers/home_controller.dart';
 import 'package:flutter_application_1/controllers/todo_contoller.dart';
+import 'package:flutter_application_1/controllers/example_controller.dart';
 import '../routes/app_routes.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final HomeController homeController = Get.put(HomeController());
-final TodoController todoController = Get.find<TodoController>();
-
+  final TodoController todoController = Get.find<TodoController>();
+  final ExampleController controller = Get.put(ExampleController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          controller.updateLayout(constraints);
+
+          return Obx(() => controller.isMobile.value
+              ? _buildMobileLayout(context)
+              : _buildWidescreenLayout(context));
+        },
+      ),
+    );
+  }
+
+  Widget _buildMobileLayout(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Home (Mobile)')),
       body: Obx(() {
         final todos = homeController.progressTodos;
 
@@ -33,7 +48,7 @@ final TodoController todoController = Get.find<TodoController>();
               margin: const EdgeInsets.symmetric(vertical: 6),
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey[800],
+                color: Colors.grey[850],
                 borderRadius: BorderRadius.circular(12),
               ),
               child: ListTile(
@@ -66,6 +81,95 @@ final TodoController todoController = Get.find<TodoController>();
           },
         );
       }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.toNamed(AppRoutes.ADD_TODO),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget _buildWidescreenLayout(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Home (Widescreen)')),
+      body: Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 900),
+          padding: const EdgeInsets.all(16),
+          child: Obx(() {
+            final todos = homeController.progressTodos;
+
+            if (todos.isEmpty) {
+              return const Center(child: Text('Homepage Kosong'));
+            }
+
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 3,
+              ),
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                final todo = todos[index];
+                final originalIndex = todoController.todos.indexOf(todo);
+
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[850],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(
+                        AppRoutes.EDIT_TODO,
+                        arguments: {
+                          'index': originalIndex,
+                          'todo': todo,
+                        },
+                      );
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          todo.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Expanded(
+                          child: Text(
+                            todo.description,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: Text(
+                            todo.status.value,
+                            style: TextStyle(
+                              color:
+                                  homeController.getStatusColor(todo.status.value),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          }),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(AppRoutes.ADD_TODO),
         child: const Icon(Icons.add),
