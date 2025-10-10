@@ -83,7 +83,6 @@ class LoginPage extends StatelessWidget {
           ),
         ),
 
-        // kanan: form login
         Expanded(
           flex: 1,
           child: Padding(

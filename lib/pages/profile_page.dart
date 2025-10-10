@@ -21,7 +21,6 @@ class ProfilePage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
 
-              // Snackbar
               Get.snackbar(
                 'Logout Berhasil',
                 'Kamu sudah keluar dari aplikasi.',
@@ -31,7 +30,6 @@ class ProfilePage extends StatelessWidget {
                 duration: const Duration(seconds: 2),
               );
 
-              // Ganti route ke login
               Future.delayed(const Duration(seconds: 1), () {
                 Get.offAllNamed('/login');
               });

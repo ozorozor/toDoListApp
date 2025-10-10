@@ -27,7 +27,6 @@ class HistoryPage extends StatelessWidget {
     );
   }
 
-  /// === MOBILE LAYOUT ===
   Widget _buildMobileLayout(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('History (Mobile)')),
@@ -96,7 +95,6 @@ class HistoryPage extends StatelessWidget {
     );
   }
 
-  /// === WIDESCREEN LAYOUT ===
   Widget _buildWidescreenLayout(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('History (Widescreen)')),
