@@ -78,7 +78,6 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Avatar
                 Container(
                   alignment: Alignment.center,
                   child: CircleAvatar(
@@ -93,7 +92,6 @@ class ProfilePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
 
-                // Card Info
                 Container(
                   width: double.infinity,
                   margin: const EdgeInsets.symmetric(horizontal: 16),
